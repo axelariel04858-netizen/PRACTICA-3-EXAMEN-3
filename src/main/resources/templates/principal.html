@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="adminHMD professional admin dashboard template">
+    <title>Tables | adminHMD</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+</head>
+
+<body>
+<div class="admin-shell">
+    <div class="sidebar-backdrop" data-sidebar-close></div>
+
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
+        <div class="sidebar-header">
+            <a class="brand-mark">
+                <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
+                <span class="brand-copy">
+                    <span class="brand-title">PRACTICA 3</span>
+                    <span class="brand-subtitle">AXEL MARTINEZ</span>
+                </span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="">
+                <span class="nav-icon"><i class="bi bi-window-stack" aria-hidden="true"></i></span>
+                <span class="nav-text">MANTENIMIENTO</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="admin-main">
+        <nav class="navbar admin-navbar navbar-expand bg-white">
+            <div class="container-fluid px-3 px-lg-4">
+                <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar" aria-expanded="true" aria-label="Toggle sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="navbar-actions ms-auto">
+                    <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
+                        <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="dashboard-content">
+            <div class="container-fluid px-3 px-lg-4 py-4">
+                <div class="page-heading">
+                    <div class="page-heading-copy">
+                        <span class="page-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
+                        <div>
+                            <p class="eyebrow mb-1">TABLA</p>
+                            <h1 class="h3 mb-1">MANTENIMIENTO DE MASCOTAS</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <input class="form-control form-control-sm table-search" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modal-lg">AGREGAR MASCOTA</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0" id="example1">
+                            <thead>
+                            <tr>
+                                <th>ID MASCOTA</th>
+                                <th>NOMBRE</th>
+                                <th>EDAD</th>
+                                <th>RAZA</th>
+                                <th class="text-end">ACCIONES</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <div class="modal fade" id="modal-lg" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <form class="needs-validation" novalidate>
+                                <div class="modal-header">
+                                    <h2 class="modal-title h5" id="formModalLabel">AGREGAR MASCOTA</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card-body">
+                                        <div class="form-group mb-3">
+                                            <label for="nombre" class="col-form-label">NOMBRE DE LA MASCOTA</label>
+                                            <input type="text" class="form-control" id="nombre" placeholder="INGRESE EL NOMBRE">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="edad" class="col-form-label">EDAD DE LA MASCOTA</label>
+                                            <input type="number" class="form-control" id="edad" placeholder="INGRESE LA EDAD">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="raza">RAZA DE LA MASCOTA</label>
+                                            <select class="form-select" id="raza">
+                                                <option value="1">GRAN PERRO</option>
+                                                <option value="2">PERRO PEQUEÑO</option>
+                                                <option value="3">AVE</option>
+                                                <option value="4">REPTIL</option>
+                                                <option value="5">OTRO</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label" for="observaciones">OBSERVACIONES</label>
+                                            <textarea class="form-control" id="observaciones" rows="4" required></textarea>
+                                            <div class="invalid-feedback">INGRESE UNA OBSERVACIÓN.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR</button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="guardar();">AGREGAR</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-update" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <form class="needs-validation" novalidate>
+                                <div class="modal-header">
+                                    <h2 class="modal-title h5">EDITAR MASCOTA</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="id-update">
+                                    <div class="form-group mb-3">
+                                        <label class="col-form-label" for="nombre-update">NOMBRE</label>
+                                        <input type="text" class="form-control" id="nombre-update" placeholder="nombre-update">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="col-form-label" for="edad-update">EDAD</label>
+                                        <input type="number" class="form-control" id="edad-update">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="raza-update">RAZA</label>
+                                        <select class="form-select" id="raza-update">
+                                            <option value="1">GRAN PERRO</option>
+                                            <option value="2">PERRO PEQUEÑO</option>
+                                            <option value="3">AVE</option>
+                                            <option value="4">REPTIL</option>
+                                            <option value="5">OTRO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="observaciones-update">OBSERVACIONES</label>
+                                        <textarea class="form-control" id="observaciones-update" rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR</button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="actualizar()">ACTUALIZAR</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ELIMINAR MASCOTA</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="id-eliminar">
+                                <p>¿ESTÁS SEGURO DE QUE QUIERES ELIMINAR ESTE REGISTRO DE FORMA PERMANENTE?</p>
+                                <div class="form-group mb-2">
+                                    <label for="nombre-eliminar">Nombre de la Mascota:</label>
+                                    <input type="text" class="form-control" id="nombre-eliminar" readonly>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="edad-eliminar">Edad:</label>
+                                    <input type="number" class="form-control" id="edad-eliminar" readonly>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="raza-eliminar">RAZA</label>
+                                    <select class="form-select" id="raza-eliminar">
+                                        <option value="1">GRAN PERRO</option>
+                                        <option value="2">PERRO PEQUEÑO</option>
+                                        <option value="3">AVE</option>
+                                        <option value="4">REPTIL</option>
+                                        <option value="5">OTRO</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-2">
+                                    <label for="observaciones-eliminar">Observaciones:</label>
+                                    <textarea class="form-control" id="observaciones-eliminar" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">CERRAR</button>
+                                <button type="button" class="btn btn-danger" onclick="eliminar()">ELIMINAR MASCOTA</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+
+<script src="/js/CRUD-Practica.js"></script>
+
+<script>
+    $(document).ready(function () {
+        if (typeof listar === "function") {
+            listar();
+        }
+    });
+</script>
+
+</body>
+</html>
